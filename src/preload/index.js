@@ -1,0 +1,26 @@
+const { contextBridge, ipcRenderer } = require('electron')
+
+contextBridge.exposeInMainWorld('api', {
+  isSetupComplete:      ()        => ipcRenderer.invoke('db:isSetupComplete'),
+  getSemesters:         ()        => ipcRenderer.invoke('db:getSemesters'),
+  getActiveSemester:    ()        => ipcRenderer.invoke('db:getActiveSemester'),
+  createSemester:       (name)    => ipcRenderer.invoke('db:createSemester', name),
+  setActiveSemester:    (id)      => ipcRenderer.invoke('db:setActiveSemester', id),
+  deleteSemester:       (id)      => ipcRenderer.invoke('db:deleteSemester', id),
+  getPeriodSettings:    ()        => ipcRenderer.invoke('db:getPeriodSettings'),
+  savePeriodSettings:   (periods) => ipcRenderer.invoke('db:savePeriodSettings', periods),
+  getCoursesBySemester: (id)      => ipcRenderer.invoke('db:getCoursesBySemester', id),
+  saveCourse:           (course)  => ipcRenderer.invoke('db:saveCourse', course),
+  deleteCourse:         (id)      => ipcRenderer.invoke('db:deleteCourse', id),
+  openExternal:         (url)     => ipcRenderer.invoke('shell:openExternal', url),
+  getSettings:          ()        => ipcRenderer.invoke('db:getSettings'),
+  saveSettings:         (s)       => ipcRenderer.invoke('db:saveSettings', s),
+  getDefaultNotesDir:   ()        => ipcRenderer.invoke('db:getDefaultNotesDir'),
+  selectDirectory:      ()        => ipcRenderer.invoke('dialog:selectDirectory'),
+  openPath:             (p)       => ipcRenderer.invoke('shell:openPath', p),
+  getNoteSessions:      (courseId)              => ipcRenderer.invoke('db:getNoteSessions', courseId),
+  createNoteSession:    (courseId, course)       => ipcRenderer.invoke('db:createNoteSession', courseId, course),
+  readNoteSession:      (sessionId)             => ipcRenderer.invoke('db:readNoteSession', sessionId),
+  saveNoteSession:      (sessionId, text)       => ipcRenderer.invoke('db:saveNoteSession', sessionId, text),
+  deleteNoteSession:    (sessionId)             => ipcRenderer.invoke('db:deleteNoteSession', sessionId),
+})
