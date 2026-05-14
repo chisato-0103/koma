@@ -1,6 +1,6 @@
 # Koma — 大学授業管理アプリ
 
-大学の時間割・授業情報・出欠・ノートをローカルで一元管理するデスクトップアプリです。MoodleやTeams、シラバスへのリンクを授業ごとにまとめ、タブを横断する手間を解消します。
+大学の時間割・授業情報・出欠・ノートをローカルで一元管理するデスクトップアプリです。Moodle・Teams・シラバスへのリンクを授業ごとにまとめ、タブを横断する手間を解消します。
 
 ## 機能
 
@@ -18,13 +18,15 @@
 | デスクトップフレームワーク | Electron 33 |
 | フロントエンド | React 18 |
 | ビルドツール | electron-vite |
-| データベース | SQLite (better-sqlite3 v12) |
+| データベース | SQLite (better-sqlite3) |
 
 ## セットアップ
 
 ```bash
 npm install
-npm run dev
+npm run dev       # 開発サーバー起動
+npm run build     # ビルド（out/ に出力）
+npm run dist      # 配布用 .dmg を生成（dist/ に出力）
 ```
 
 初回起動時は各限の時間設定と学期名の入力を行うセットアップ画面が表示されます。
@@ -33,10 +35,11 @@ npm run dev
 
 | データ | パス |
 |--------|------|
-| 時間割DB | `~/Library/Application Support/university-timetable/timetable.db` |
-| ノート | `~/Library/Application Support/university-timetable/notes/`（変更可） |
-| アプリ設定 | `~/Library/Application Support/university-timetable/settings.json` |
+| 時間割DB | `~/Library/Application Support/Koma/timetable.db` |
+| ノート | `~/Library/Application Support/Koma/notes/`（設定から変更可） |
+| アプリ設定 | `~/Library/Application Support/Koma/settings.json` |
 
-## 使い方
+## ドキュメント
 
-詳細は [使い方.md](使い方.md) を参照してください。
+- [使い方](docs/使い方.md) — 各機能の操作方法
+- [仕様書](docs/仕様書.md) — 設計・データ構造の詳細
